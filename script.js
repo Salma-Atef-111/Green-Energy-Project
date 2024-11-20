@@ -43,7 +43,7 @@ window.onload = function () {
           entry.target.classList.contains("about-us-numbers-title") &&
           !entry.target.classList.contains("counting")
         ) {
-          entry.target.classList.add("counting"); // إضافة كلاس "counting" لمنع التكرار
+          entry.target.classList.add("counting");
 
           const target = +entry.target.getAttribute("data-target");
           const text = entry.target.getAttribute("data-text");
