@@ -33,7 +33,7 @@ document.querySelectorAll(".toggle-contant-title").forEach((title) => {
 });
 /***************************/
 
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
   window.scrollTo(0, 0);
 
   if (window.innerWidth > 768) {
@@ -56,7 +56,7 @@ window.onload = function () {
               if (count < target) {
                 count += increment;
                 entry.target.textContent = Math.ceil(count) + text;
-                setTimeout(updateNum, 30);
+                requestAnimationFrame(updateNum);
               } else {
                 entry.target.textContent = target + text;
               }
@@ -68,7 +68,7 @@ window.onload = function () {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.25 }
     );
 
     document
@@ -95,7 +95,7 @@ window.onload = function () {
       style.classList.remove("visible-animation");
     });
   }
-};
+});
 
 /**************************** */
 
