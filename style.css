@@ -279,6 +279,10 @@ section.visible {
   .homePage {
     padding-bottom: 30px;
   }
+  .home-page-title {
+    font-weight: 400;
+    font-size: 85px;
+  }
 }
 
 /********************************************/
@@ -565,12 +569,12 @@ section.visible {
     grid-template-columns: 1fr;
   }
 }
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
   .our-team {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-}
+} */
 /**************************/
 .testimonials-section {
   background-color: var(--bg-color);
@@ -1106,7 +1110,7 @@ section.visible {
 .rights {
   text-align: end;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
   letter-spacing: -0.004em;
   padding-right: 12rem;
