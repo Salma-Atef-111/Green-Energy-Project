@@ -35,45 +35,66 @@ document.querySelectorAll(".toggle-contant-title").forEach((title) => {
 
 window.onload = function () {
   window.scrollTo(0, 0);
-  const observer = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (
-          entry.isIntersecting &&
-          entry.target.classList.contains("about-us-numbers-title") &&
-          !entry.target.classList.contains("counting")
-        ) {
-          entry.target.classList.add("counting");
 
-          const target = +entry.target.getAttribute("data-target");
-          const text = entry.target.getAttribute("data-text");
-          let count = 0;
-          const increment = target / 100;
+  if (window.innerWidth > 768) {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (
+            entry.isIntersecting &&
+            entry.target.classList.contains("about-us-numbers-title") &&
+            !entry.target.classList.contains("counting")
+          ) {
+            entry.target.classList.add("counting");
 
-          const updateNum = () => {
-            if (count < target) {
-              count += increment;
-              entry.target.textContent = Math.ceil(count) + text;
-              setTimeout(updateNum, 30);
-            } else {
-              entry.target.textContent = target + text;
-            }
-          };
-          updateNum();
-        }
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
+            const target = +entry.target.getAttribute("data-target");
+            const text = entry.target.getAttribute("data-text");
+            let count = 0;
+            const increment = target / 100;
+
+            const updateNum = () => {
+              if (count < target) {
+                count += increment;
+                entry.target.textContent = Math.ceil(count) + text;
+                setTimeout(updateNum, 30);
+              } else {
+                entry.target.textContent = target + text;
+              }
+            };
+            updateNum();
+          }
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    document
+      .querySelectorAll("section, .about-us-numbers-title")
+      .forEach((element) => {
+        observer.observe(element);
       });
-    },
-    { threshold: 0.5 }
-  );
+  } else {
+    const sections = document.querySelectorAll(
+      "section, .about-us-numbers-title"
+    );
+    sections.forEach((element) => {
+      element.classList.add("visible");
 
-  document
-    .querySelectorAll("section, .about-us-numbers-title")
-    .forEach((element) => {
-      observer.observe(element);
+      if (element.classList.contains("about-us-numbers-title")) {
+        const target = +element.getAttribute("data-target");
+        const text = element.getAttribute("data-text");
+        element.textContent = target + text;
+      }
     });
+
+    const lazyStyles = document.querySelectorAll(".visible-animation");
+    lazyStyles.forEach((style) => {
+      style.classList.remove("visible-animation");
+    });
+  }
 };
 
 /**************************** */
